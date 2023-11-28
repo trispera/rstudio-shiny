@@ -1,4 +1,4 @@
-# HedgeDoc Helm Chart
+# Rstudio Helm Chart
 ## TL;DR
 ```sh
 git clone git@github.com:trispera/rstudio-shiny.git
