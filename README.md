@@ -2,6 +2,7 @@
 ## TL;DR
 ```sh
 git clone git@github.com:trispera/rstudio-shiny.git
+cd rstudio-helm
 helm upgrade --install rstudio .
 ```
 
