@@ -1,6 +1,3 @@
-
-# Upstream Dockerfile https://github.com/rocker-org/rocker-versioned2/blob/master/dockerfiles/tidyverse_4.1.2.Dockerfile
-
 FROM rocker/r-ver:4.3.2
 
 ENV RSTUDIO_VERSION=2023.09.1+494
@@ -37,7 +34,7 @@ ENV TZ="Europe/Helsinki" \
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
 RUN chmod +x /sbin/tini
 
-COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
+COPY source/shiny-server.conf /etc/shiny-server/shiny-server.conf
 
 RUN install2.r -e shiny rmarkdown shinythemes shinydashboard && \
     cp -R /usr/local/lib/R/site-library/shiny/examples/* /srv/shiny-server/ && \
