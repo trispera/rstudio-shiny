@@ -9,8 +9,6 @@ ENV PANDOC_VERSION=default
 ENV PATH=/usr/lib/rstudio-server/bin:$PATH
 
 RUN /rocker_scripts/install_rstudio.sh
-# RUN /rocker_scripts/install_pandoc.sh
-# RUN /rocker_scripts/install_tidyverse.sh
 RUN /rocker_scripts/install_shiny_server.sh
 
 RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y \
@@ -33,7 +31,7 @@ ENV TZ="Europe/Helsinki" \
     APP_GID=999 \
     PKG_R_VERSION=4.3.1 \
     PKG_RSTUDIO_VERSION=2023.09.1+494 \
-    PKG_SHINY_VERSION=1.5.20.1002
+    PKG_SHINY_VERSION=1.5.21.1012
 
 # Setup Tini, as S6 does not work when run as non-root users
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
