@@ -34,7 +34,7 @@ ENV TZ="Europe/Helsinki" \
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
 RUN chmod +x /sbin/tini
 
-COPY source/shiny-server.conf /etc/shiny-server/shiny-server.conf
+COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
 
 RUN install2.r -e shiny rmarkdown shinythemes shinydashboard && \
     cp -R /usr/local/lib/R/site-library/shiny/examples/* /srv/shiny-server/ && \
@@ -43,7 +43,7 @@ RUN install2.r -e shiny rmarkdown shinythemes shinydashboard && \
     chmod go+w -R /var/log/shiny-server /usr/local/lib/R /srv /var/lib/shiny-server && \
     chmod ugo+rwx -R /usr/lib/rstudio-server/www
 
-COPY source/start.sh /usr/local/bin/start.sh
+COPY start.sh /usr/local/bin/start.sh
 
 RUN rstudio-server verify-installation
 
