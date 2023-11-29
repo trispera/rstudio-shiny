@@ -11,9 +11,9 @@ spec:
     git:
       uri: {{ .Values.buildConfig.gitRepoUri }}
       ref: {{ .Values.buildConfig.gitBranch }}
+    contextDir: source
   strategy:
-    dockerStrategy:
-      dockerfilePath: source/Dockerfile
+    type: Docker
   output:
     to:
       kind: ImageStreamTag
