@@ -37,7 +37,6 @@ RUN chmod +x /sbin/tini
 COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
 
 RUN install2.r -e shiny rmarkdown shinythemes shinydashboard && \
-    cp -R /usr/local/lib/R/site-library/shiny/examples/* /srv/shiny-server/ && \
     mkdir -p /var/log/shiny-server && \
     chown rstudio:rstudio /var/log/shiny-server && \
     chmod go+w -R /var/log/shiny-server /usr/local/lib/R /srv /var/lib/shiny-server && \
