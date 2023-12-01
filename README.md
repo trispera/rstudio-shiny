@@ -25,15 +25,22 @@ helm upgrade --install rstudio . -f {custom_values.yaml}
 | `route.host`                           | If `openshift.enabled`, will create a route               | `""`                                                         |
 | `buildConfig.gitRepoUri`               | Uri of the GitHub repo where the `Dockerfile` is located  | `https://github.com/trispera/rstudio-shiny.git`              |
 | `buildConfig.gitBranch`                | Branch of the GitHub repo                                 | `main`                                                       |
-| `pvc.mountName`                        | Name for the `PersistentVolumeClaim`                      | `rstudio-server-home`                                        |
-| `pvc.storageSize`                      | Storage size for the `PersistentVolumeClaim`              | `5Gi`                                                        |
 
 ### Rstudio parameters
 
 | Name                                   | Description                                             | Value                             |
 | -------------------------------------- | ------------------------------------------------------- | --------------------------------- |
-| `rstudio.podSecurityContext`          | Set SecurityContext for the pod                         | `{}`                              |
-| `rstudio.containerSecurityContext`    | Set SecurityContext for the container                   | `allowPrivilegeEscalation: false`<br>`runAsUser:`<br>`runAsGroup:`<br>`capabilities:`<br>&nbsp;&nbsp;`drop:`<br>&nbsp;&nbsp;`- ALL`<br>`runAsNonRoot: true`<br>`seccompProfile:`<br>&nbsp;&nbsp;`type: RuntimeDefault` |
+| `rstudio.podSecurityContext`           | Set SecurityContext for the pod                         | `{}`                              |
+| `rstudio.containerSecurityContext`     | Set SecurityContext for the container                   | `allowPrivilegeEscalation: false`<br>`runAsUser:`<br>`runAsGroup:`<br>`capabilities:`<br>&nbsp;&nbsp;`drop:`<br>&nbsp;&nbsp;`- ALL`<br>`runAsNonRoot: true`<br>`seccompProfile:`<br>&nbsp;&nbsp;`type: RuntimeDefault` |
+| `rstudio.pvc.mountName`                        | Name for the `PersistentVolumeClaim`            | `rstudio-server-home`             |
+| `rstudio.pvc.storageSize`                      | Storage size for the `PersistentVolumeClaim`    | `5Gi`                             |
+
+### Shiny parameters
+
+| Name                                   | Description                                             | Value                             |
+| -------------------------------------- | ------------------------------------------------------- | --------------------------------- |
+| `shiny.pvc.mountName`                  | Name for the `PersistentVolumeClaim`                    | `shiny-server`                    |
+| `shiny.pvc.storageSize`                | Storage size for the `PersistentVolumeClaim`            | `5Gi`                             |
 
 ## Cleanup
 To delete all the resources, simply uninstall the Helm Chart:
