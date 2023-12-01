@@ -25,8 +25,10 @@ spec:
         - containerPort: 8787
           protocol: TCP
         volumeMounts:
-        - name: {{ .Values.pvc.mountName }}
+        - name: {{ .Values.rstudio.pvc.mountName }}
           mountPath: /home/rstudio-server
+        - name: {{ .Values.shiny.pvc.mountName }}
+          mountPath: /srv/shiny-server
         {{- if .Values.openshift.enabled}}
         securityContext:
         {{- .Values.rstudio.containerSecurityContext | toYaml | nindent 10 }}
@@ -40,9 +42,12 @@ spec:
       {{- end }}
       terminationGracePeriodSeconds: 30
       volumes:
-      - name: {{ .Values.pvc.mountName }}
+      - name: {{ .Values.rstudio.pvc.mountName }}
         persistentVolumeClaim:
-          claimName: {{ .Values.pvc.mountName }}
+          claimName: {{ .Values.rstudio.pvc.mountName }}
+      - name: {{ .Values.shiny.pvc.mountName }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.shiny.pvc.mountName }}
   triggers:
   - type: ConfigChange
   - imageChangeParams:
